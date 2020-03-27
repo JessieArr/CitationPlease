@@ -30,5 +30,11 @@ namespace CitationPlease.Test.System
             var testDate = new DateTime(2018, 1, 1);
             var result = await SUT.ListCollectionContents("CPD", testDate, 0);
         }
+
+        [Fact]
+        public async Task GetPresidentialDocumentPackageSummary_DoesNotThrow()
+        {
+            var result = await SUT.GetPresidentialDocumentPackageSummary("DCPD-202000160");
+        }
     }
 }

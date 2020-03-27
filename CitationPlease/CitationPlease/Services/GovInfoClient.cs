@@ -20,6 +20,7 @@ namespace CitationPlease.Services
         }
 
         private string _CollectionsPath = "https://api.govinfo.gov/collections";
+        private string _PackagesPath = "https://api.govinfo.gov/packages";
         public async Task<CollectionsResponse> ListCollections()
         {
             var url = $"{_CollectionsPath}?api_key={_ApiKey}";
@@ -42,6 +43,19 @@ namespace CitationPlease.Services
             {
                 var body = await result.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<CollectionPackageList>(body);
+            }
+            throw new Exception("Error calling GovInfo API.");
+        }
+
+
+        public async Task<PresidentialDocumentPackageSummary> GetPresidentialDocumentPackageSummary(string packageId)
+        {
+            var url = $"{_PackagesPath}/{packageId}/summary?api_key={_ApiKey}";
+            var result = await _HttpClient.GetAsync(url);
+            if (result.IsSuccessStatusCode)
+            {
+                var body = await result.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<PresidentialDocumentPackageSummary>(body);
             }
             throw new Exception("Error calling GovInfo API.");
         }

@@ -14,5 +14,11 @@ namespace CitationPlease.Models.GovInfo
         public string title { get; set; }
         public string congress { get; set; }
         public DateTime dateIssued { get; set; }
+        public PackageDownloadInfo download { get; set; }
+        public string branch { get; set; }
+        public int pages { get; set; }
+        public string governmentAuthor1 { get; set; }
+        public string documentType { get; set; }
+        public string publisher { get; set; }
     }
 }
