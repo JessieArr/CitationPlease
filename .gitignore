@@ -350,3 +350,5 @@ MigrationBackup/
 
 *.ncrunchsolution
 CitationPlease/CitationPlease.Test/secrets.json
+
+CitationPlease/CitationPlease/secrets.json
