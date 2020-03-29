@@ -1,4 +1,5 @@
-﻿using CitationPlease.Models.GovInfo;
+﻿using CitationPlease.Helpers;
+using CitationPlease.Models.GovInfo;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -13,9 +14,9 @@ namespace CitationPlease.Services
     {
         private string _ApiKey;
         private HttpClient _HttpClient;
-        public GovInfoClient(string apiKey)
+        public GovInfoClient(SecretHelper secretHelper)
         {
-            _ApiKey = apiKey;
+            _ApiKey = secretHelper.GetSecrets().GovInfoApiKey;
             _HttpClient = new HttpClient();
         }
 
@@ -56,6 +57,19 @@ namespace CitationPlease.Services
             {
                 var body = await result.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<PresidentialDocumentPackageSummary>(body);
+            }
+            throw new Exception("Error calling GovInfo API.");
+        }
+
+        public async Task<string> GetPresidentialDocumentPackageDetails(string packageId)
+        {
+            var url = $"{_PackagesPath}/{packageId}/htm?api_key={_ApiKey}";
+            var result = await _HttpClient.GetAsync(url);
+            if (result.IsSuccessStatusCode)
+            {
+                var body = await result.Content.ReadAsStringAsync();
+                return body;
+                //return JsonConvert.DeserializeObject<PresidentialDocumentPackageSummary>(body);
             }
             throw new Exception("Error calling GovInfo API.");
         }

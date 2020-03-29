@@ -5,10 +5,40 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    @foreach(var package in Model.Packages)
-    {
-        <p><a href="@package.packageLink" target="_blank">@package.title</a></p>
-    }
+    <div>
+        <h2>Today:</h2>
+        <h4>Executive:</h4>
+        @foreach (var package in Model.TodaysPresidentialDocs)
+        {
+            <p><a asp-page="Executive/Details" asp-route-id="@package.packageId">@package.title</a></p>
+        }
+        <h4>Legislative:</h4>
+        @foreach (var package in Model.TodaysBills)
+        {
+            <p><a href="@package.packageLink" target="_blank">@package.title</a></p>
+        }
+        <h4>Judicial:</h4>
+        @foreach (var package in Model.TodaysCourtOpinions)
+        {
+            <p><a href="@package.packageLink" target="_blank">@package.title</a></p>
+        }
+    </div>
+    <div>
+        <h2>This Week:</h2>
+        <h4>Executive:</h4>
+        @foreach (var package in Model.ThisWeeksPresidentialDocs)
+        {
+            <p><a asp-page="Executive/Details" asp-route-id="@package.packageId">@package.title</a></p>
+        }
+        <h4>Legislative:</h4>
+        @foreach (var package in Model.ThisWeeksBills)
+        {
+            <p><a href="@package.packageLink" target="_blank">@package.title</a></p>
+        }
+        <h4>Judicial:</h4>
+        @foreach (var package in Model.ThisWeeksCourtOpinions)
+        {
+            <p><a href="@package.packageLink" target="_blank">@package.title</a></p>
+        }
+    </div>
 </div>

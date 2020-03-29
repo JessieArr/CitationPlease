@@ -6,10 +6,10 @@ using System.Text;
 
 namespace CitationPlease.Helpers
 {
-    public static class SecretHelper
+    public class SecretHelper
     {
-        private static string _SecretsFilePath = "secrets.json";
-        public static Secrets GetSecrets()
+        private string _SecretsFilePath = "secrets.json";
+        public Secrets GetSecrets()
         {
             var fileText = File.ReadAllText(_SecretsFilePath);
             return JsonConvert.DeserializeObject<Secrets>(fileText);

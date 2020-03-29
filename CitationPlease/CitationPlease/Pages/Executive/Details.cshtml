@@ -1,0 +1,10 @@
+﻿@page
+@model CitationPlease.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<p>@Model.Summary.title</p>
+@Html.Raw(Model.Contents)

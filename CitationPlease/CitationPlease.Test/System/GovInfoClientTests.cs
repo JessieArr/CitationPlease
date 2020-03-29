@@ -1,5 +1,5 @@
-﻿using CitationPlease.Services;
-using CitationPlease.Test.Helpers;
+﻿using CitationPlease.Helpers;
+using CitationPlease.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,8 +14,7 @@ namespace CitationPlease.Test.System
 
         public GovInfoClientTests()
         {
-            var secrets = SecretHelper.GetSecrets();
-            SUT = new GovInfoClient(secrets.GovInfoApiKey);
+            SUT = new GovInfoClient(new SecretHelper());
         }
 
         [Fact]
