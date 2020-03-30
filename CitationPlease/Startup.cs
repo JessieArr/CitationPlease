@@ -25,7 +25,7 @@ namespace CitationPlease
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
 
             services.AddScoped<GovInfoClient, GovInfoClient>();
             services.AddScoped<SecretHelper, SecretHelper>();

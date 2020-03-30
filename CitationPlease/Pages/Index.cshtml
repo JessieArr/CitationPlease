@@ -8,16 +8,19 @@
     <div>
         <h2>Today:</h2>
         <h4>Executive:</h4>
+        <hr />
         @foreach (var package in Model.TodaysPresidentialDocs)
         {
             <p><a asp-page="Executive/Details" asp-route-id="@package.packageId">@package.title</a></p>
         }
         <h4>Legislative:</h4>
+        <hr />
         @foreach (var package in Model.TodaysBills)
         {
             <p><a href="@package.packageLink" target="_blank">@package.title</a></p>
         }
         <h4>Judicial:</h4>
+        <hr />
         @foreach (var package in Model.TodaysCourtOpinions)
         {
             <p><a href="@package.packageLink" target="_blank">@package.title</a></p>
@@ -26,19 +29,34 @@
     <div>
         <h2>This Week:</h2>
         <h4>Executive:</h4>
-        @foreach (var package in Model.ThisWeeksPresidentialDocs)
-        {
-            <p><a asp-page="Executive/Details" asp-route-id="@package.packageId">@package.title</a></p>
-        }
+        <hr />
+        <div class="row">
+            @foreach (var package in Model.ThisWeeksPresidentialDocs)
+            {
+                <div class="col-md-4">
+                    <p><a asp-page="Executive/Details" asp-route-id="@package.packageId">@package.title</a></p>
+                </div>
+            }
+        </div>
         <h4>Legislative:</h4>
-        @foreach (var package in Model.ThisWeeksBills)
-        {
-            <p><a href="@package.packageLink" target="_blank">@package.title</a></p>
-        }
+        <hr />
+        <div class="row">
+            @foreach (var package in Model.ThisWeeksBills)
+            {
+                <div class="col-md-4">
+                    <p><a href="@package.packageLink" target="_blank">@package.title</a></p>
+                </div>
+            }
+        </div>
         <h4>Judicial:</h4>
-        @foreach (var package in Model.ThisWeeksCourtOpinions)
-        {
-            <p><a href="@package.packageLink" target="_blank">@package.title</a></p>
-        }
+        <hr />
+        <div class="row">
+            @foreach (var package in Model.ThisWeeksCourtOpinions)
+            {
+                <div class="col-md-4">
+                    <p><a href="@package.packageLink" target="_blank">@package.title</a></p>
+                </div>
+            }
+        </div>
     </div>
 </div>
