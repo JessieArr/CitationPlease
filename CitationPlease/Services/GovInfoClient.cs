@@ -73,5 +73,29 @@ namespace CitationPlease.Services
             }
             throw new Exception("Error calling GovInfo API.");
         }
+
+        public async Task<CourtOpinionPackageSummary> GetCourtOpinionPackageSummary(string packageId)
+        {
+            var url = $"{_PackagesPath}/{packageId}/summary?api_key={_ApiKey}";
+            var result = await _HttpClient.GetAsync(url);
+            if (result.IsSuccessStatusCode)
+            {
+                var body = await result.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<CourtOpinionPackageSummary>(body);
+            }
+            throw new Exception("Error calling GovInfo API.");
+        }
+
+        public async Task<BillPackageSummary> GetBillPackageSummary(string packageId)
+        {
+            var url = $"{_PackagesPath}/{packageId}/summary?api_key={_ApiKey}";
+            var result = await _HttpClient.GetAsync(url);
+            if (result.IsSuccessStatusCode)
+            {
+                var body = await result.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<BillPackageSummary>(body);
+            }
+            throw new Exception("Error calling GovInfo API.");
+        }
     }
 }

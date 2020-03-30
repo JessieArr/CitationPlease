@@ -1,0 +1,32 @@
+﻿@page
+@model CitationPlease.Judicial.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+@Model.Summary.title
+<h3>Plaintiffs:</h3>
+@foreach (var plaintiff in Model.Summary.parties.Where(x => x.role == "Plaintiff"))
+{
+    if (plaintiff.firstName == plaintiff.lastName)
+    {
+        <p>@plaintiff.firstName</p>
+    }
+    else
+    {
+        <p>@plaintiff.lastName, @plaintiff.firstName</p>
+    }
+}
+<h3>Defendants:</h3>
+@foreach (var plaintiff in Model.Summary.parties.Where(x => x.role == "Defendant"))
+{
+    if (plaintiff.firstName == plaintiff.lastName)
+    {
+        <p>@plaintiff.firstName</p>
+    }
+    else
+    {
+        <p>@plaintiff.lastName, @plaintiff.firstName</p>
+    }
+}

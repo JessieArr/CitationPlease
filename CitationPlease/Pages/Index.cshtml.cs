@@ -36,17 +36,17 @@ namespace CitationPlease.Pages
             var courtOpinions = _Client.ListCollectionContents(DocumentCollections.CourtOpinionsID, lastWeek, 0).Result;
 
             var thisWeeksDocs = presidentialDocs.packages.Where(x => x.dateIssued > DateTime.Now.AddDays(-7));
-            ThisWeeksPresidentialDocs = thisWeeksDocs.OrderBy(x => x.dateIssued).ToList();
+            ThisWeeksPresidentialDocs = thisWeeksDocs.OrderByDescending(x => x.dateIssued).ToList();
             var todaysDocs = presidentialDocs.packages.Where(x => x.dateIssued > DateTime.Now.AddDays(-1));
             TodaysPresidentialDocs = todaysDocs.ToList();
 
             var thisWeeksBills = bills.packages.Where(x => x.dateIssued > DateTime.Now.AddDays(-7));
-            ThisWeeksBills = thisWeeksBills.OrderBy(x => x.dateIssued).ToList();
+            ThisWeeksBills = thisWeeksBills.OrderByDescending(x => x.dateIssued).ToList();
             var todaysBills = bills.packages.Where(x => x.dateIssued > DateTime.Now.AddDays(-1));
             TodaysBills = todaysBills.ToList();
 
             var thisWeeksCourtOpinions = courtOpinions.packages.Where(x => x.dateIssued > DateTime.Now.AddDays(-7));
-            ThisWeeksCourtOpinions = thisWeeksCourtOpinions.OrderBy(x => x.dateIssued).ToList();
+            ThisWeeksCourtOpinions = thisWeeksCourtOpinions.OrderByDescending(x => x.dateIssued).ToList();
             var todaysCourtOpinions = courtOpinions.packages.Where(x => x.dateIssued > DateTime.Now.AddDays(-1));
             TodaysCourtOpinions = todaysCourtOpinions.ToList();
         }

@@ -11,6 +11,7 @@
         <hr />
         @foreach (var package in Model.TodaysPresidentialDocs)
         {
+            <h4>@package.dateIssued.ToString("ddd, MMM dd")</h4>
             <p><a asp-page="Executive/Details" asp-route-id="@package.packageId">@package.title</a></p>
         }
         <h4>Legislative:</h4>
@@ -34,6 +35,7 @@
             @foreach (var package in Model.ThisWeeksPresidentialDocs)
             {
                 <div class="col-md-4">
+                    <p>@package.dateIssued.ToString("ddd, MMM dd")</p>
                     <p><a asp-page="Executive/Details" asp-route-id="@package.packageId">@package.title</a></p>
                 </div>
             }
@@ -44,7 +46,19 @@
             @foreach (var package in Model.ThisWeeksBills)
             {
                 <div class="col-md-4">
-                    <p><a href="@package.packageLink" target="_blank">@package.title</a></p>
+                    <p>
+                        @package.dateIssued.ToString("ddd, MMM dd") -
+                        @if (String.Equals(package.docClass, "s", StringComparison.OrdinalIgnoreCase)
+                           || String.Equals(package.docClass, "sres", StringComparison.OrdinalIgnoreCase))
+                        {
+                            <span style="color: darkblue">Senate</span>
+                        }
+                        else
+                        {
+                            <span style="color: crimson">House</span>
+                        }
+                    </p>
+                    <p><a asp-page="Legislative/Details" asp-route-id="@package.packageId">@package.title</a></p>
                 </div>
             }
         </div>
@@ -54,7 +68,8 @@
             @foreach (var package in Model.ThisWeeksCourtOpinions)
             {
                 <div class="col-md-4">
-                    <p><a href="@package.packageLink" target="_blank">@package.title</a></p>
+                    <p>@package.dateIssued.ToString("ddd, MMM dd")</p>
+                    <p><a asp-page="Judicial/Details" asp-route-id="@package.packageId">@package.title</a></p>
                 </div>
             }
         </div>
