@@ -13,6 +13,7 @@ namespace CitationPlease.Judicial
     {
         public CourtOpinionPackageSummary Summary { get; set; }
         public string Contents { get; set; }
+        public string GovInfoLink { get; set; }
         private GovInfoClient _Client;
 
         public DetailsModel(GovInfoClient client)
@@ -23,6 +24,8 @@ namespace CitationPlease.Judicial
         public void OnGet(string id)
         {
             Summary = _Client.GetCourtOpinionPackageSummary(id).Result;
+            var packageId = Summary.packageId;
+            GovInfoLink = $"https://www.govinfo.gov/app/details/{packageId}/summary";
             //Contents = _Client.GetPresidentialDocumentPackageDetails(id).Result;
         }
     }

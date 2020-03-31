@@ -10,6 +10,8 @@
 <b>Case #: @Model.Summary.caseNumber</b>
 <br />
 <b>Circuit: @Model.Summary.courtCircuit</b>
+<br />
+<p><a href="@Model.GovInfoLink" target="_blank">Read more on govinfo.gov</a></p>
 
 <h4>Plaintiffs:</h4>
 @foreach (var plaintiff in Model.Summary.parties.Where(x => x.role == "Plaintiff"))
