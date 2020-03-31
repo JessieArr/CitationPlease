@@ -18,6 +18,7 @@ namespace CitationPlease.Models.GovInfo
         public string branch { get; set; }
         public int pages { get; set; }
         public string governmentAuthor1 { get; set; }
+        public string governmentAuthor2 { get; set; }
         public string documentType { get; set; }
         public string publisher { get; set; }
     }

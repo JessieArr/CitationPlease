@@ -4,5 +4,22 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-@Model.Summary.title
+@if (String.Equals(Model.Summary.billType, "hres", StringComparison.OrdinalIgnoreCase))
+{
+    <h1>H. Res. @Model.Summary.billNumber</h1>
+}
+@if (String.Equals(Model.Summary.billType, "hr", StringComparison.OrdinalIgnoreCase))
+{
+    <h1>H. R. @Model.Summary.billNumber</h1>
+}
+@if (String.Equals(Model.Summary.billType, "sres", StringComparison.OrdinalIgnoreCase))
+{
+    <h1>S. Res. @Model.Summary.billNumber</h1>
+}
+@if (String.Equals(Model.Summary.billType, "s", StringComparison.OrdinalIgnoreCase))
+{
+    <h1>S. @Model.Summary.billNumber</h1>
+}
+<h4>@Model.Summary.title</h4>
+
+<p><a href="@Model.PDFLink" target="_blank">Read the original on govinfo.gov</a></p>

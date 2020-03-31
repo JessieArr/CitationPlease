@@ -4,9 +4,14 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-@Model.Summary.title
-<h3>Plaintiffs:</h3>
+<h2>@Model.Summary.title</h2>
+<b>@Model.Summary.governmentAuthor1</b>
+<br />
+<b>Case #: @Model.Summary.caseNumber</b>
+<br />
+<b>Circuit: @Model.Summary.courtCircuit</b>
+
+<h4>Plaintiffs:</h4>
 @foreach (var plaintiff in Model.Summary.parties.Where(x => x.role == "Plaintiff"))
 {
     if (plaintiff.firstName == plaintiff.lastName)
@@ -18,7 +23,7 @@
         <p>@plaintiff.lastName, @plaintiff.firstName</p>
     }
 }
-<h3>Defendants:</h3>
+<h4>Defendants:</h4>
 @foreach (var plaintiff in Model.Summary.parties.Where(x => x.role == "Defendant"))
 {
     if (plaintiff.firstName == plaintiff.lastName)

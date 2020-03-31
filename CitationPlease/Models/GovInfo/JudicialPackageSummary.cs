@@ -8,5 +8,7 @@ namespace CitationPlease.Models.GovInfo
     public class CourtOpinionPackageSummary : PackageSummary
     {
         public List<JudicialParty> parties { get; set; }
+        public string caseNumber { get; set; }
+        public string courtCircuit { get; set; }
     }
 }
