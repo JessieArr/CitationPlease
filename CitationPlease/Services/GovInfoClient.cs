@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -94,6 +95,18 @@ namespace CitationPlease.Services
             {
                 var body = await result.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<BillPackageSummary>(body);
+            }
+            throw new Exception("Error calling GovInfo API.");
+        }
+
+        public async Task<Stream> DownloadPDF(string url)
+        {
+            var result = await _HttpClient.GetAsync(url);
+            if (result.IsSuccessStatusCode)
+            {
+                var bytes = await result.Content.ReadAsByteArrayAsync();
+                var stream = await result.Content.ReadAsStreamAsync();
+                return stream;
             }
             throw new Exception("Error calling GovInfo API.");
         }

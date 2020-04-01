@@ -354,3 +354,5 @@ CitationPlease/CitationPlease.Test/secrets.json
 CitationPlease/CitationPlease/secrets.json
 
 CitationPlease.Test/secrets.json
+
+*.ncrunchproject

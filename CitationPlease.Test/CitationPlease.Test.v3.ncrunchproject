@@ -1,9 +1,0 @@
-﻿<ProjectConfiguration>
-  <Settings>
-    <IgnoredTests>
-      <FixtureTestSelector>
-        <FixtureName>CitationPlease.Test.System.GovInfoClientTests</FixtureName>
-      </FixtureTestSelector>
-    </IgnoredTests>
-  </Settings>
-</ProjectConfiguration>
