@@ -99,6 +99,19 @@ namespace CitationPlease.Services
             throw new Exception("Error calling GovInfo API.");
         }
 
+        public async Task<string> GetBillPackageDetails(string packageId)
+        {
+            var url = $"{_PackagesPath}/{packageId}/xml?api_key={_ApiKey}";
+            var result = await _HttpClient.GetAsync(url);
+            if (result.IsSuccessStatusCode)
+            {
+                var body = await result.Content.ReadAsStringAsync();
+                var text = BillParsingService.GetTextFromXML(body);
+                return text;
+            }
+            throw new Exception("Error calling GovInfo API.");
+        }
+
         public async Task<Stream> DownloadPDF(string url)
         {
             var result = await _HttpClient.GetAsync(url);

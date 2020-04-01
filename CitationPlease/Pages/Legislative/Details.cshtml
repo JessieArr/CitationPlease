@@ -23,3 +23,7 @@
 <h4>@Model.Summary.title</h4>
 
 <p><a href="@Model.PDFLink" target="_blank">Read the original on govinfo.gov</a></p>
+@foreach(var content in Model.Contents)
+{
+    <p>@content</p>
+}

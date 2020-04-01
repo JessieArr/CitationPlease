@@ -12,7 +12,7 @@ namespace CitationPlease.Legislative
     public class DetailsModel : PageModel
     {
         public BillPackageSummary Summary { get; set; }
-        public string Contents { get; set; }
+        public List<string> Contents { get; set; }
         public string PDFLink { get; set; }
         private GovInfoClient _Client;
 
@@ -24,10 +24,9 @@ namespace CitationPlease.Legislative
         public void OnGet(string id)
         {
             Summary = _Client.GetBillPackageSummary(id).Result;
-            //Contents = _Client.GetPresidentialDocumentPackageDetails(id).Result;
+            Contents = _Client.GetBillPackageDetails(id).Result.Split(Environment.NewLine).ToList();
             var packageId = Summary.packageId;
             PDFLink = $"https://www.govinfo.gov/content/pkg/{packageId}/pdf/{packageId}.pdf";
-            // https://www.govinfo.gov/content/pkg/BILLS-116hr6201eh/pdf/BILLS-116hr6201eh.pdf
         }
     }
 }
