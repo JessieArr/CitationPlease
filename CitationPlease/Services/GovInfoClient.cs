@@ -1,5 +1,6 @@
 ﻿using CitationPlease.Helpers;
 using CitationPlease.Models.GovInfo;
+using CitationPlease.Models.GovInfo.Judicial;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -7,7 +8,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace CitationPlease.Services
 {
@@ -83,6 +87,18 @@ namespace CitationPlease.Services
             {
                 var body = await result.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<CourtOpinionPackageSummary>(body);
+            }
+            throw new Exception("Error calling GovInfo API.");
+        }
+
+        public async Task<CourtOpinionDetails> GetCourtOpinionDetails(string packageId)
+        {
+            var url = $"{_PackagesPath}/{packageId}/mods?api_key={_ApiKey}";
+            var result = await _HttpClient.GetAsync(url);
+            if (result.IsSuccessStatusCode)
+            {
+                var xml = await result.Content.ReadAsStringAsync();
+                return CourtOpinionParsingService.GetDetailsFromXML(xml);
             }
             throw new Exception("Error calling GovInfo API.");
         }

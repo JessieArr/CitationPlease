@@ -11,6 +11,8 @@
 <br />
 <b>Circuit: @Model.Summary.courtCircuit</b>
 <br />
+<b>Cause: @Model.Details.Cause</b>
+<br />
 <p><a href="@Model.GovInfoLink" target="_blank">Read more on govinfo.gov</a></p>
 
 <h4>Plaintiffs:</h4>
@@ -36,4 +38,8 @@
     {
         <p>@plaintiff.lastName, @plaintiff.firstName</p>
     }
+}
+@foreach (var relatedItem in Model.RelatedItems)
+{
+    <p><b>@relatedItem.DateIssued.ToString("yyyy-MM-dd")</b>: <a href="@relatedItem.URL" target="_blank">@relatedItem.SubTitle</a></p>
 }

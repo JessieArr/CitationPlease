@@ -35,5 +35,11 @@ namespace CitationPlease.Test.System
         {
             var result = await SUT.GetPresidentialDocumentPackageSummary("DCPD-202000160");
         }
+
+        [Fact]
+        public async Task GetCourtOpinionDetails_DoesNotThrow()
+        {
+            var result = await SUT.GetCourtOpinionDetails("USCOURTS-cand-4_17-cv-04405");
+        }
     }
 }
